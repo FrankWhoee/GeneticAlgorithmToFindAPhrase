@@ -203,6 +203,10 @@ public class PhraseUI extends javax.swing.JFrame {
     
     
     private void buttonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRunActionPerformed
+        bestPhrase = new Phrase("",0);
+        generationNum = 0;
+        population = new ArrayList<>();
+        double avgFitness = 0;
         GA.importLetters();
         int size = Integer.parseInt(textStartPop.getText());
         String phrase = textPhrase.getText();
@@ -225,12 +229,9 @@ public class PhraseUI extends javax.swing.JFrame {
             System.out.println("Generation: " + generationNum + " Average Fitness: " + avgFitness + " Best Phrase: " + bestPhrase.getPhrase());
             generationNum++;
         }
-        
         updateAVGFitness();
         updateBestPhrase();
         update();
-        
-        
     }//GEN-LAST:event_buttonRunActionPerformed
 
     private void textGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textGenActionPerformed
