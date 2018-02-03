@@ -57,17 +57,25 @@ public class GA {
     }
     
     public static double getFitness(Phrase phrase, String desiredPhrase){
-        int lettersMatched = 0;
-        double fitness = 0;
+        double fitness = phrase.getPhrase().length() * 27;
         for(int i = 1; i < phrase.getPhrase().length() - 1; i++){
-            if(phrase.getPhrase().charAt(i) == desiredPhrase.charAt(i)){
-                lettersMatched += 1;
-                //System.out.println("GA.getFitness: phrase = " + phrase.getPhrase() + ". " + phrase.getPhrase().charAt(i)  + " matched with " + desiredPhrase.charAt(i) + ", letters matched = " + lettersMatched);
-            }
+            int phraseIndex = getIndex(phrase.getPhrase().substring(i, i + 1));
+            int desiredIndex = getIndex(desiredPhrase.substring(i,i+1));
+            
+            fitness -= Math.abs(desiredIndex - phraseIndex);
         }
-        fitness = (double)lettersMatched/(double)desiredPhrase.length();
         //System.out.println("GA.getFitness: phrase: " + phrase.getPhrase() + " fitness: " + fitness);
         return fitness;
+    }
+    
+    public static int getIndex(String letter){
+        int index;
+        for(index = letters.size() - 1; index > 0; index--){
+            if(letters.get(index).equals(letter)){
+                return index;
+            }
+        }
+        return -1;
     }
     
     public static ArrayList<Phrase> generatePopulation(ArrayList<Phrase> population, double mutationRate){
