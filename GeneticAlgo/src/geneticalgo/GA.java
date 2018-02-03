@@ -58,7 +58,7 @@ public class GA {
     
     public static double getFitness(Phrase phrase, String desiredPhrase){
         double fitness = phrase.getPhrase().length() * 27;
-        for(int i = 0; i < phrase.getPhrase().length() - 1; i++){
+        for(int i = 0; i < phrase.getPhrase().length(); i++){
             int phraseIndex = getIndex(phrase.getPhrase().substring(i, i + 1));
             int desiredIndex = getIndex(desiredPhrase.substring(i,i+1));
             

@@ -95,7 +95,7 @@ public class PhraseUI extends javax.swing.JFrame {
 
         jLabel8.setText("Starting population size:");
 
-        textStartPop.setText("20");
+        textStartPop.setText("500");
 
         textBestPhrase.setEditable(false);
 
@@ -211,7 +211,7 @@ public class PhraseUI extends javax.swing.JFrame {
         update();
         
         
-        for(int i = 0; i < 50000; i++){
+        while(!bestPhrase.getPhrase().equals(phrase)){
             double startTime = System.currentTimeMillis();
             population = GA.assignFitness(population, phrase);
             updateAVGFitness();
@@ -219,12 +219,16 @@ public class PhraseUI extends javax.swing.JFrame {
             update();
             population = GA.generatePopulation(population, mutationRate);
             double endTime = System.currentTimeMillis();
-            if((endTime - startTime) > 1000){
+            if((endTime -startTime) > 1000){
                 break;
             }
             System.out.println("Generation: " + generationNum + " Average Fitness: " + avgFitness + " Best Phrase: " + bestPhrase.getPhrase());
             generationNum++;
         }
+        
+        updateAVGFitness();
+        updateBestPhrase();
+        update();
         
         
     }//GEN-LAST:event_buttonRunActionPerformed
