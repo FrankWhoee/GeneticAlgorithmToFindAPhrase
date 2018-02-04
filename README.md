@@ -26,7 +26,7 @@ Uses a kind of a genetic algorithm to find a phrase that you want. My first Mach
 3. Extract files to a destination of choice
 4. I recommend using Netbeans to edit this. If you are using Netbeans:
 5. Launch Netbeans
-6. Click the icon ![Open Project Icon](NetBeansOpenProjectIcon.png)
+6. Click the icon ![Open Project Icon](NetBeansOpenProjectIcon.png) on the top bar of the IDE.
 7. Then select the folder "GeneticAlgo" from the directory you extracted the ZIP file to.
 8. The icon should have a little coffee icon that signifies it's a NetBeans project.
 9. Have fun editing :smile:
