@@ -18,7 +18,7 @@ public class PhraseUI extends javax.swing.JFrame {
     public PhraseUI() {
         initComponents();
         importLoaderChoices();
-        
+        updatePerformanceProjection();
         
     }
     
