@@ -3,8 +3,6 @@ package geneticalgo;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import javax.swing.DefaultListModel;
-import java.awt.Event;
 
 public class PhraseUI extends javax.swing.JFrame {
     ArrayList<Phrase> population = new ArrayList<>();
@@ -585,7 +583,7 @@ public class PhraseUI extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonBenchmarkActionPerformed
 
     private void enableLowercaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enableLowercaseActionPerformed
-        // TODO add your handling code here:
+        updatePerformanceProjection();
     }//GEN-LAST:event_enableLowercaseActionPerformed
 
     /**
