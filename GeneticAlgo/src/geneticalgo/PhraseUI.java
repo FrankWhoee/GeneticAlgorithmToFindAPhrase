@@ -255,6 +255,9 @@ public class PhraseUI extends javax.swing.JFrame {
         String phrase = textPhrase.getText();
         double mutationRate = Double.parseDouble(textMutateRate.getText());
         population = GA.generateFirstPopulation(phrase,size);
+        if(population == null){
+            super.dispose();
+        }
         update();
         boolean timeout = false;
         double duration = 0;

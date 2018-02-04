@@ -36,13 +36,35 @@ public class GA {
     }
     
     public static ArrayList<Phrase> generateFirstPopulation(String phrase,int populationSize){
+        
         ArrayList<Phrase> newPopulation = new ArrayList<>();
         System.out.println("");
         System.out.println("GA.generateFirstPopulation: GENERATING FIRST POPULATION");
+        boolean timeout = false;
+        double duration = 0;
+        double startTime = System.currentTimeMillis();
         for(int i = 0; i < populationSize; i++){
             Phrase newPhrase = new Phrase(createNewString(phrase.length()), 0);
             newPopulation.add(newPhrase);
+            double endTime = System.currentTimeMillis();
+            if((endTime - startTime) > 5000){
+                timeout = true;
+                duration = (endTime -startTime);
+                break;
+            }
         }
+        if(timeout){
+            System.out.println("TIMEOUT. TIME TAKEN:" + duration + " ms");
+            System.out.println("REALLY?");
+            System.out.println("YOU CAN'T EVEN GENERATE " + populationSize + " PHRASES? WOW YOUR COMPUTER REALLY SUCKS. IS IT SOME KIND OF POTATO?");
+            System.out.println("HOPEFULLY YOU'LL GET A NEW COMPUTER BUDDY. GOOD LUCK.");
+            System.out.println("I'M GONNA CLOSE THE WINDOW FOR YOU NOW. YOU'RE WELCOME.");
+            System.out.println("");
+            System.out.println("SINCERELY,");
+            System.out.println("FRANKWHOEE"); 
+            return null;
+        }
+        
         return newPopulation;
     }
     
