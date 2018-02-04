@@ -333,6 +333,7 @@ public class PhraseUI extends javax.swing.JFrame {
     
     
     private void buttonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRunActionPerformed
+        double startTimeForSolve = System.currentTimeMillis();
         String choice = choiceLoaders.getSelectedItem();
         importLoader(choice);
         avgFitness = 0;
@@ -393,6 +394,7 @@ public class PhraseUI extends javax.swing.JFrame {
                 }
                 super.dispose();
         }else{
+            double endTimeForSolve = System.currentTimeMillis();
             System.out.println("");
             population = GA.assignFitness(population, phrase);
             updateAVGFitness();
@@ -401,6 +403,7 @@ public class PhraseUI extends javax.swing.JFrame {
             avgFitness = GA.getFitness(new Phrase(phrase,0), phrase);
             System.out.println("Generation: " + generationNum + " Average Fitness: " + avgFitness + " Best Phrase: " + bestPhrase.getPhrase());
             System.out.println("PROGRESS:[✓] [" + 100 + "% " + getProgressBar(100) + "]");
+            System.out.println("Phrase \"" + phrase + "\" found in " + (endTimeForSolve - startTimeForSolve)/1000 + "s");
             System.out.println("Program ended."); 
         }
         
