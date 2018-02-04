@@ -18,9 +18,10 @@ Picture of what running it in shell looks like:
 3. Make sure you have java by typing `java -version`. To download java, go here: https://www.java.com/en/download/help/linux_x64_install.xml
 4. Type `java -jar GeneticAlgo.jar`
 5. A UI should pop up. Modify the settings if you want, then click "Run". The default settings are recommended.
-6. After the program finishes running, it should display 
+6. If you want to use capital letters, numbers, or symbols, you should click "Benchmark" to see where your computer is at to get a better performance projection.
+7. After the program finishes running, it should display 
 `PROGRESS:[✓] [100% ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇]`
-7. It should also display `Program ended.`
+8. It should also display `Program ended.`
 
 **For Windows Users**
 1. Open up the Terminal by right-clicking on the Start Button.
@@ -29,9 +30,10 @@ Picture of what running it in shell looks like:
 4. Navigate to the folder that contains GeneticAlgo.jar using `cd`
 5. Type `java -jar GeneticAlgo.jar`
 6. A UI should pop up. Modify the settings if you want, then click "Run". The default settings are recommended.
-7. After the program finishes running, it should display 
+7. If you want to use capital letters, numbers, or symbols, you should click "Benchmark" to see where your computer is at to get a better performance projection.
+8. After the program finishes running, it should display 
 `PROGRESS:[✓] [100% ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇]`
-8. It should also display `Program ended.`
+9. It should also display `Program ended.`
 
 **For Developers**
 1. Click "Clone or Download"
