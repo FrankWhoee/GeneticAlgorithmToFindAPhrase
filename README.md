@@ -1,7 +1,7 @@
 ### GeneticAlgorithmToFindAPhrase
 Uses a kind of a genetic algorithm to find a phrase that you want. My first Machine Learning project.
 
-##**Instructions**
+##Instructions
 **For users:**
 1. Go to GeneticAlgo/dist/GeneticAlgo.jar
 2. Click Download
