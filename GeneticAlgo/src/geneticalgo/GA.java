@@ -4,7 +4,8 @@ import java.util.*;
 public class GA {
     public static ArrayList<String> letters = new ArrayList<>();
     
-    public static void importLetters(){
+    public static void importLetters(boolean capsNum){
+        
         letters.add("a");
         letters.add("b");
         letters.add("c");
@@ -31,7 +32,45 @@ public class GA {
         letters.add("x");
         letters.add("y");
         letters.add("z");
-        letters.add(" "); 
+        letters.add(" ");
+        if(capsNum){
+            letters.add("A");
+            letters.add("B");
+            letters.add("C");
+            letters.add("D");
+            letters.add("E");
+            letters.add("F");
+            letters.add("G");
+            letters.add("H");
+            letters.add("I");
+            letters.add("J");
+            letters.add("K");
+            letters.add("L");
+            letters.add("M");
+            letters.add("N");
+            letters.add("O");
+            letters.add("P");
+            letters.add("Q");
+            letters.add("R");
+            letters.add("S");
+            letters.add("T");
+            letters.add("U");
+            letters.add("V");
+            letters.add("W");
+            letters.add("X");
+            letters.add("Y");
+            letters.add("Z");
+            letters.add("1");
+            letters.add("2");
+            letters.add("3");
+            letters.add("4");
+            letters.add("5");
+            letters.add("6");
+            letters.add("7");
+            letters.add("8");
+            letters.add("9");
+            letters.add("0"); 
+        }
         System.out.println("Letters imported.");
     }
     
@@ -41,7 +80,6 @@ public class GA {
         System.out.println("");
         System.out.println("GA.generateFirstPopulation: GENERATING FIRST POPULATION");
         boolean timeout = false;
-        double duration = 0;
         double startTime = System.currentTimeMillis();
         for(int i = 0; i < populationSize; i++){
             Phrase newPhrase = new Phrase(createNewString(phrase.length()), 0);
@@ -49,19 +87,10 @@ public class GA {
             double endTime = System.currentTimeMillis();
             if((endTime - startTime) > 5000){
                 timeout = true;
-                duration = (endTime -startTime);
                 break;
             }
         }
         if(timeout){
-            System.out.println("TIMEOUT. TIME TAKEN:" + duration + " ms");
-            System.out.println("REALLY?");
-            System.out.println("YOU CAN'T EVEN GENERATE " + populationSize + " PHRASES? WOW YOUR COMPUTER REALLY SUCKS. IS IT SOME KIND OF POTATO?");
-            System.out.println("HOPEFULLY YOU'LL GET A NEW COMPUTER BUDDY. GOOD LUCK.");
-            System.out.println("I'M GONNA CLOSE THE WINDOW FOR YOU NOW. YOU'RE WELCOME.");
-            System.out.println("");
-            System.out.println("SINCERELY,");
-            System.out.println("FRANKWHOEE"); 
             return null;
         }
         

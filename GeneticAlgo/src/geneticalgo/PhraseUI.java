@@ -64,6 +64,7 @@ public class PhraseUI extends javax.swing.JFrame {
         textGen = new java.awt.TextField();
         textPop = new java.awt.TextField();
         textFitness = new java.awt.TextField();
+        enableCapsNum = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -116,6 +117,8 @@ public class PhraseUI extends javax.swing.JFrame {
 
         textFitness.setEditable(false);
 
+        enableCapsNum.setText("Capital Letters and Numbers (Slower)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,8 +151,11 @@ public class PhraseUI extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel8)
-                                            .addComponent(textStartPop, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(textStartPop, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(enableCapsNum, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 50, Short.MAX_VALUE)))
                         .addGap(19, 19, 19))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +202,9 @@ public class PhraseUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textStartPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textStartPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(enableCapsNum))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(listPop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -247,15 +255,25 @@ public class PhraseUI extends javax.swing.JFrame {
     
     
     private void buttonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRunActionPerformed
+        avgFitness = 0;
         bestPhrase = new Phrase("",0);
         generationNum = 0;
         population = new ArrayList<>();
-        GA.importLetters();
+        boolean capsNum = enableCapsNum.isSelected();
+        GA.importLetters(capsNum);
         int size = Integer.parseInt(textStartPop.getText());
         String phrase = textPhrase.getText();
         double mutationRate = Double.parseDouble(textMutateRate.getText());
         population = GA.generateFirstPopulation(phrase,size);
         if(population == null){
+            System.out.println("TIMEOUT.");
+            System.out.println("REALLY?");
+            System.out.println("YOU CAN'T EVEN GENERATE " + size + " RANDOM PHRASES? WOW YOUR COMPUTER REALLY SUCKS. IS IT SOME KIND OF POTATO?");
+            System.out.println("HOPEFULLY YOU'LL GET A NEW COMPUTER BUDDY. GOOD LUCK.");
+            System.out.println("I'M GONNA CLOSE THE WINDOW FOR YOU NOW. YOU'RE WELCOME.");
+            System.out.println("");
+            System.out.println("SINCERELY,");
+            System.out.println("FRANKWHOEE"); 
             super.dispose();
         }
         update();
@@ -271,16 +289,17 @@ public class PhraseUI extends javax.swing.JFrame {
             double endTime = System.currentTimeMillis();
             if((endTime -startTime) > 5000){
                 timeout = true;
-                duration = (endTime -startTime);
+                duration = (endTime - startTime);
                 break;
             }
             generationNum++;
         }
         if(timeout){
-            System.out.println("TIMEOUT. TIME TAKEN:" + duration + " ms");
+            System.out.println("TIMEOUT. TIME TAKEN:" + duration + "ms");
                 if(size > 1000){
                     System.out.println("STOP DICKING AROUND WITH THE POPULATION SIZE. ANYTHING GREATER THAN 1000 IS OVERKILL, AND YOUR COMPUTER CAN'T HANDLE IT.");
                     System.out.println("I'M GOING TO CLOSE THE WINDOW FOR YOU NOW. YOU'RE WELCOME.");
+                    System.out.println("");
                     System.out.println("SINCERELY,");
                     System.out.println("FRANKWHOEE");
                 }else{
@@ -295,12 +314,12 @@ public class PhraseUI extends javax.swing.JFrame {
                 super.dispose();
         }else{
            population = GA.assignFitness(population, phrase);
-        updateAVGFitness();
-        updateBestPhrase();
-        update();
-        avgFitness = GA.getFitness(new Phrase(phrase,0), phrase);
-        printStats();
-        System.out.println("Program ended."); 
+            updateAVGFitness();
+            updateBestPhrase();
+            update();
+            avgFitness = GA.getFitness(new Phrase(phrase,0), phrase);
+            printStats();
+            System.out.println("Program ended."); 
         }
         
     }//GEN-LAST:event_buttonRunActionPerformed
@@ -350,6 +369,7 @@ public class PhraseUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonRun;
+    private javax.swing.JCheckBox enableCapsNum;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
