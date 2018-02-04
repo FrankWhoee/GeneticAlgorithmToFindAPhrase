@@ -10,8 +10,72 @@ public class PhraseUI extends javax.swing.JFrame {
     Phrase bestPhrase = new Phrase("",0);
     int generationNum = 0;
     double avgFitness = 0;
+    ArrayList<String> loadingSpinner = new ArrayList<>();
+    int loadingNum = 0;
+    
     public PhraseUI() {
         initComponents();
+        importLoaderChoices();
+        
+        
+    }
+    
+    public void importLoaderChoices(){
+        choiceLoaders.add("Spinner");
+        choiceLoaders.add("Bouncer");
+        choiceLoaders.add("Pulse");
+        choiceLoaders.add("Hands");
+        choiceLoaders.add("Moons");
+        choiceLoaders.add("Dots");
+    }
+    
+    public void importLoader(String type){
+        if(type.equals("Spinner")){
+            loadingSpinner.add("|");
+            loadingSpinner.add("/");
+            loadingSpinner.add("–");
+            loadingSpinner.add("\\");
+        }else if(type.equals("Bouncer")){
+            loadingSpinner.add("=    ");
+            loadingSpinner.add(" =   ");
+            loadingSpinner.add("  =  ");
+            loadingSpinner.add("    =");
+            loadingSpinner.add("  =  ");
+            loadingSpinner.add(" =   ");
+            loadingSpinner.add("=    ");
+        }else if(type.equals("Pulse")){
+            loadingSpinner.add("▁");
+            loadingSpinner.add("▂");
+            loadingSpinner.add("▃");
+            loadingSpinner.add("▄");
+            loadingSpinner.add("▅");
+            loadingSpinner.add("▆");
+            loadingSpinner.add("▇");
+            loadingSpinner.add("█");
+        }else if(type.equals("Hands")){
+            loadingSpinner.add("👆");
+            loadingSpinner.add("👈");
+            loadingSpinner.add("👇");
+            loadingSpinner.add("👉");
+        }else if(type.equals("Moons")){
+            loadingSpinner.add("🌑");
+            loadingSpinner.add("🌒");
+            loadingSpinner.add("🌓");
+            loadingSpinner.add("🌔");
+            loadingSpinner.add("🌕");
+            loadingSpinner.add("🌖");
+            loadingSpinner.add("🌗");
+            loadingSpinner.add("🌘");
+            loadingSpinner.add("🌑");
+        }else{
+            loadingSpinner.add(".      ");
+            loadingSpinner.add("..     ");
+            loadingSpinner.add("...    ");
+            loadingSpinner.add("....   ");
+            loadingSpinner.add(".....  ");
+            loadingSpinner.add("...... ");
+            loadingSpinner.add(".......");
+        }
     }
 
     public void update(){
@@ -23,8 +87,6 @@ public class PhraseUI extends javax.swing.JFrame {
         for(Phrase phrase: population){
             listPop.add(phrase.getPhrase());
         }
-        
-        System.out.println("Update complete.");
     }
     
     public void updateAVGFitness(){
@@ -51,7 +113,6 @@ public class PhraseUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        textFeedback = new javax.swing.JTextField();
         buttonRun = new javax.swing.JButton();
         textPhrase = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -65,6 +126,10 @@ public class PhraseUI extends javax.swing.JFrame {
         textPop = new java.awt.TextField();
         textFitness = new java.awt.TextField();
         enableCapsNum = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
+        choiceLoaders = new java.awt.Choice();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -80,10 +145,6 @@ public class PhraseUI extends javax.swing.JFrame {
         jLabel3.setText("Average Fitness:");
 
         jLabel4.setText("Population Size:");
-
-        textFeedback.setEditable(false);
-        textFeedback.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textFeedback.setText("Welcome to PhraseUI v1.0.0");
 
         buttonRun.setText("Run");
         buttonRun.addActionListener(new java.awt.event.ActionListener() {
@@ -119,77 +180,68 @@ public class PhraseUI extends javax.swing.JFrame {
 
         enableCapsNum.setText("Capital Letters and Numbers (Slower)");
 
+        jLabel7.setText("Loading Spinner (For Console Users Only):");
+
+        jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel9.setText("Statistics:");
+
+        jLabel10.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel10.setText("Enter settings here:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3)
+                    .addComponent(textBestPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFitness, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textPhrase)
-                            .addComponent(textFeedback, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(textMutateRate, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(textGen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(textPop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addComponent(buttonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(textMutateRate, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(textStartPop, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(enableCapsNum, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                .addGap(0, 50, Short.MAX_VALUE)))
-                        .addGap(19, 19, 19))
+                                .addComponent(textStartPop, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(enableCapsNum, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textBestPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFitness, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)))
+                        .addComponent(buttonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(choiceLoaders, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(textPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 807, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(101, 101, 101)
+                            .addComponent(jLabel4))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(textGen, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(41, 41, 41)
+                            .addComponent(textPop, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(listPop, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(listPop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textBestPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(textGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel3))
-                            .addComponent(textPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1)
-                        .addComponent(textFitness, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textFeedback, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,10 +257,35 @@ public class PhraseUI extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(textStartPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(enableCapsNum))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buttonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(listPop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(buttonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(choiceLoaders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textBestPhrase, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(textGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addGap(1, 1, 1)
+                        .addComponent(textFitness, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -236,7 +313,7 @@ public class PhraseUI extends javax.swing.JFrame {
     public String getProgressBar(double progress){
         String progressBar = "";
         for(int i = 0; i < (int)progress/2; i++){
-            progressBar += "▉";
+            progressBar += "▇";
         }
         
         for(int i = 0; i < 50 - ((int)progress/2); i++){
@@ -250,11 +327,14 @@ public class PhraseUI extends javax.swing.JFrame {
         System.out.println("Generation: " + generationNum + " Average Fitness: " + avgFitness + " Best Phrase: " + bestPhrase.getPhrase());
         double progress = getProgress();
         String progressBar = getProgressBar(progress);
-        System.out.println("PROGRESS: [" + (int)progress + "% " + progressBar + "]");
+        System.out.println("PROGRESS: [" +loadingSpinner.get(loadingNum%loadingSpinner.size()) +"] [" + (int)progress + "% " + progressBar + "]");
+        loadingNum++;
     }
     
     
     private void buttonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRunActionPerformed
+        String choice = choiceLoaders.getSelectedItem();
+        importLoader(choice);
         avgFitness = 0;
         bestPhrase = new Phrase("",0);
         generationNum = 0;
@@ -313,12 +393,14 @@ public class PhraseUI extends javax.swing.JFrame {
                 }
                 super.dispose();
         }else{
-           population = GA.assignFitness(population, phrase);
+            System.out.println("");
+            population = GA.assignFitness(population, phrase);
             updateAVGFitness();
             updateBestPhrase();
             update();
             avgFitness = GA.getFitness(new Phrase(phrase,0), phrase);
-            printStats();
+            System.out.println("Generation: " + generationNum + " Average Fitness: " + avgFitness + " Best Phrase: " + bestPhrase.getPhrase());
+            System.out.println("PROGRESS:[✓] [" + 100 + "% " + getProgressBar(100) + "]");
             System.out.println("Program ended."); 
         }
         
@@ -369,17 +451,20 @@ public class PhraseUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonRun;
+    private java.awt.Choice choiceLoaders;
     private javax.swing.JCheckBox enableCapsNum;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private java.awt.List listPop;
     private java.awt.TextField textBestPhrase;
-    private javax.swing.JTextField textFeedback;
     private java.awt.TextField textFitness;
     private java.awt.TextField textGen;
     private javax.swing.JTextField textMutateRate;

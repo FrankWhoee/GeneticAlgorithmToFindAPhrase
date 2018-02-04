@@ -82,6 +82,7 @@ public class GA {
         boolean timeout = false;
         double startTime = System.currentTimeMillis();
         for(int i = 0; i < populationSize; i++){
+            
             Phrase newPhrase = new Phrase(createNewString(phrase.length()), 0);
             newPopulation.add(newPhrase);
             double endTime = System.currentTimeMillis();
