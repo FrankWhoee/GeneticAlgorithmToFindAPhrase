@@ -133,9 +133,10 @@ public class PhraseUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         enableNum = new javax.swing.JCheckBox();
-        enablePunct = new javax.swing.JCheckBox();
+        enableSymbols = new javax.swing.JCheckBox();
         labelPerformance = new javax.swing.JLabel();
         buttonBenchmark = new javax.swing.JButton();
+        enableLowercase = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -206,10 +207,10 @@ public class PhraseUI extends javax.swing.JFrame {
             }
         });
 
-        enablePunct.setText("Punctuation (Affects Performance Negatively)");
-        enablePunct.addActionListener(new java.awt.event.ActionListener() {
+        enableSymbols.setText("Symbols (Affects Performance Negatively)");
+        enableSymbols.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enablePunctActionPerformed(evt);
+                enableSymbolsActionPerformed(evt);
             }
         });
 
@@ -220,6 +221,15 @@ public class PhraseUI extends javax.swing.JFrame {
         buttonBenchmark.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBenchmarkActionPerformed(evt);
+            }
+        });
+
+        enableLowercase.setSelected(true);
+        enableLowercase.setText("Lowercase Letters");
+        enableLowercase.setToolTipText("");
+        enableLowercase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enableLowercaseActionPerformed(evt);
             }
         });
 
@@ -249,8 +259,9 @@ public class PhraseUI extends javax.swing.JFrame {
                                     .addComponent(labelPerformance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(enableNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(enableCaps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(enablePunct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(buttonBenchmark, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(enableSymbols, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(buttonBenchmark, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(enableLowercase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -278,9 +289,7 @@ public class PhraseUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(listPop, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(listPop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
@@ -298,23 +307,25 @@ public class PhraseUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(textStartPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(enableCaps))))
+                                    .addComponent(enableLowercase))))
+                        .addGap(2, 2, 2)
+                        .addComponent(enableCaps)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(enableNum)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enablePunct)
+                        .addComponent(enableSymbols)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelPerformance, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonBenchmark, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(buttonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(choiceLoaders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(49, 49, 49)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
@@ -383,25 +394,34 @@ public class PhraseUI extends javax.swing.JFrame {
     
     public void getCPUBenchmark(){
         double startTime = System.currentTimeMillis();
+        
+        boolean lowercase = enableLowercase.isSelected();
+        boolean caps = enableCaps.isSelected();
+        boolean num = enableNum.isSelected();
+        boolean punct = enableSymbols.isSelected();
+        
         int size = 5000;
-        String phrase = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
-        GA.importLetters(true,true,true);
+        String phrase = textPhrase.getText();
+        GA.importLetters(lowercase,caps,num,punct);
         population = GA.generateFirstPopulation(phrase,size);
         population = GA.assignFitness(population, phrase);
         population = GA.generatePopulation(population, 0.01);
         double endTime = System.currentTimeMillis();
         System.out.println((endTime - startTime) + "ms to generate a population of 1000");
         score = (endTime - startTime)/1000;
-        
         updatePerformanceProjection();
     }
     
     public void updatePerformanceProjection(){
+        boolean lowercase = enableLowercase.isSelected();
         boolean caps = enableCaps.isSelected();
         boolean num = enableNum.isSelected();
-        boolean punct = enablePunct.isSelected();
+        boolean punct = enableSymbols.isSelected();
         
-        double performance = 0.1 * score;
+        double performance = 0;
+        if(lowercase){
+            performance += 0.1 * score;
+        }
         if(caps){
             performance += 2 * score;
         }
@@ -443,18 +463,24 @@ public class PhraseUI extends javax.swing.JFrame {
         population = new ArrayList<>();
         
         //Get which features the user wants
+        boolean lowercase = enableLowercase.isSelected();
         boolean caps = enableCaps.isSelected();
         boolean num = enableNum.isSelected();
-        boolean punct = enablePunct.isSelected();
+        boolean symbols = enableSymbols.isSelected();
         
         //Import letters that the GA will need
-        GA.importLetters(caps,num,punct);
+        GA.importLetters(lowercase,caps,num,symbols);
         
         //Get the starting population size the user wants
         int size = Integer.parseInt(textStartPop.getText());
         
         //Get the desired phrase
         String phrase = textPhrase.getText();
+        
+        if(!GA.verifyString(phrase)){
+            System.out.println("INVALID LETTERS OR SYMBOLS.");
+            return;
+        }
         
         //Get the mutation rate
         double mutationRate = Double.parseDouble(textMutateRate.getText());
@@ -542,9 +568,9 @@ public class PhraseUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formKeyPressed
 
-    private void enablePunctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enablePunctActionPerformed
+    private void enableSymbolsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enableSymbolsActionPerformed
        updatePerformanceProjection();
-    }//GEN-LAST:event_enablePunctActionPerformed
+    }//GEN-LAST:event_enableSymbolsActionPerformed
 
     private void enableNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enableNumActionPerformed
        updatePerformanceProjection();
@@ -557,6 +583,10 @@ public class PhraseUI extends javax.swing.JFrame {
     private void buttonBenchmarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBenchmarkActionPerformed
         getCPUBenchmark();
     }//GEN-LAST:event_buttonBenchmarkActionPerformed
+
+    private void enableLowercaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enableLowercaseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enableLowercaseActionPerformed
 
     /**
      * @param args the command line arguments
@@ -598,8 +628,9 @@ public class PhraseUI extends javax.swing.JFrame {
     private javax.swing.JButton buttonRun;
     private java.awt.Choice choiceLoaders;
     private javax.swing.JCheckBox enableCaps;
+    private javax.swing.JCheckBox enableLowercase;
     private javax.swing.JCheckBox enableNum;
-    private javax.swing.JCheckBox enablePunct;
+    private javax.swing.JCheckBox enableSymbols;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

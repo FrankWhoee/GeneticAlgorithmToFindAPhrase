@@ -4,35 +4,38 @@ import java.util.*;
 public class GA {
     public static ArrayList<String> letters = new ArrayList<>();
     
-    public static void importLetters(boolean caps, boolean nums, boolean punct){
+    public static void importLetters(boolean lowercase,boolean caps, boolean nums, boolean symbols){
         letters.clear();
-        letters.add("a");
-        letters.add("b");
-        letters.add("c");
-        letters.add("d");
-        letters.add("e");
-        letters.add("f");
-        letters.add("g");
-        letters.add("h");
-        letters.add("i");
-        letters.add("j");
-        letters.add("k");
-        letters.add("l");
-        letters.add("m");
-        letters.add("n");
-        letters.add("o");
-        letters.add("p");
-        letters.add("q");
-        letters.add("r");
-        letters.add("s");
-        letters.add("t");
-        letters.add("u");
-        letters.add("v");
-        letters.add("w");
-        letters.add("x");
-        letters.add("y");
-        letters.add("z");
         letters.add(" ");
+        if(lowercase){
+            letters.add("a");
+            letters.add("b");
+            letters.add("c");
+            letters.add("d");
+            letters.add("e");
+            letters.add("f");
+            letters.add("g");
+            letters.add("h");
+            letters.add("i");
+            letters.add("j");
+            letters.add("k");
+            letters.add("l");
+            letters.add("m");
+            letters.add("n");
+            letters.add("o");
+            letters.add("p");
+            letters.add("q");
+            letters.add("r");
+            letters.add("s");
+            letters.add("t");
+            letters.add("u");
+            letters.add("v");
+            letters.add("w");
+            letters.add("x");
+            letters.add("y");
+            letters.add("z");
+        }
+        
         if(caps){
             letters.add("A");
             letters.add("B");
@@ -74,7 +77,7 @@ public class GA {
             letters.add("9");
             letters.add("0"); 
         }
-        if(punct){
+        if(symbols){
             letters.add(",");
             letters.add(".");
             letters.add("/");
@@ -99,6 +102,15 @@ public class GA {
             letters.add("<");
         }
         System.out.println("Letters imported.");
+    }
+    
+    public static boolean verifyString(String string){
+        for(int i =0; i < string.length(); i++){
+            if(!letters.contains(string.substring(i, i + 1))){
+                return false;
+            }
+        }
+        return true;
     }
     
     public static ArrayList<Phrase> generateFirstPopulation(String phrase,int populationSize){

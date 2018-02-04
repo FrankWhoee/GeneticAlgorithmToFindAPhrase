@@ -49,8 +49,9 @@
                                   <Component id="labelPerformance" max="32767" attributes="0"/>
                                   <Component id="enableNum" max="32767" attributes="0"/>
                                   <Component id="enableCaps" max="32767" attributes="0"/>
-                                  <Component id="enablePunct" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="enableSymbols" alignment="0" max="32767" attributes="0"/>
                                   <Component id="buttonBenchmark" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Component id="enableLowercase" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -90,11 +91,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="listPop" min="-2" pref="543" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
+                  <Component id="listPop" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel10" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -112,19 +110,21 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="textStartPop" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="enableCaps" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="enableLowercase" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                      <Component id="enableCaps" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="enableNum" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="enablePunct" min="-2" max="-2" attributes="0"/>
+                      <Component id="enableSymbols" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelPerformance" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonBenchmark" min="-2" pref="45" max="-2" attributes="0"/>
-                      <EmptySpace pref="87" max="32767" attributes="0"/>
+                      <EmptySpace pref="64" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="buttonRun" min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
@@ -133,7 +133,7 @@
                               <Component id="choiceLoaders" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -288,12 +288,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enableNumActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="enablePunct">
+    <Component class="javax.swing.JCheckBox" name="enableSymbols">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Punctuation (Affects Performance Negatively)"/>
+        <Property name="text" type="java.lang.String" value="Symbols (Affects Performance Negatively)"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enablePunctActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enableSymbolsActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelPerformance">
@@ -310,6 +310,16 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBenchmarkActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="enableLowercase">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Lowercase Letters"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enableLowercaseActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
