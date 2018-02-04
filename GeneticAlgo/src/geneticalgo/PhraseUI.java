@@ -3,6 +3,7 @@ package geneticalgo;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import java.awt.Event;
 
 public class PhraseUI extends javax.swing.JFrame {
     ArrayList<Phrase> population = new ArrayList<>();
@@ -65,6 +66,11 @@ public class PhraseUI extends javax.swing.JFrame {
         textFitness = new java.awt.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         jLabel1.setText("Best Phrase");
 
@@ -200,43 +206,90 @@ public class PhraseUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void step(){
+        String phrase = textPhrase.getText();
+        double mutationRate = Double.parseDouble(textMutateRate.getText());
+        population = GA.assignFitness(population, phrase);
+        population = GA.generatePopulation(population, mutationRate);
+        printStats();
+    }
+    
+    public double getProgress(){
+        String phrase = textPhrase.getText();
+        double progress = avgFitness/GA.getFitness(new Phrase(phrase,0), phrase);
+        progress *= 100;
+        return progress;
+    }
+    
+    public double getFinalProgress(){
+        return 100;
+    }
+    
+    public String getProgressBar(double progress){
+        String progressBar = "";
+        for(int i = 0; i < (int)progress/2; i++){
+            progressBar += "▉";
+        }
+        
+        for(int i = 0; i < 50 - ((int)progress/2); i++){
+            progressBar += "░";
+        }
+        return progressBar;
+    }
+    
+    public void printStats(){
+        String phrase = textPhrase.getText();
+        System.out.println("Generation: " + generationNum + " Average Fitness: " + avgFitness + " Best Phrase: " + bestPhrase.getPhrase());
+        double progress = getProgress();
+        String progressBar = getProgressBar(progress);
+        System.out.println("PROGRESS: [" + (int)progress + "% " + progressBar + "]");
+        
+        
+        
+        
+    }
     
     
     private void buttonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRunActionPerformed
         bestPhrase = new Phrase("",0);
         generationNum = 0;
         population = new ArrayList<>();
-        double avgFitness = 0;
         GA.importLetters();
         int size = Integer.parseInt(textStartPop.getText());
         String phrase = textPhrase.getText();
         double mutationRate = Double.parseDouble(textMutateRate.getText());
         population = GA.generateFirstPopulation(phrase,size);
         update();
-        
-        
         while(!bestPhrase.getPhrase().equals(phrase)){
             double startTime = System.currentTimeMillis();
+            step();
             population = GA.assignFitness(population, phrase);
             updateAVGFitness();
             updateBestPhrase();
             update();
-            population = GA.generatePopulation(population, mutationRate);
             double endTime = System.currentTimeMillis();
             if((endTime -startTime) > 1000){
                 break;
             }
-            System.out.println("Generation: " + generationNum + " Average Fitness: " + avgFitness + " Best Phrase: " + bestPhrase.getPhrase());
+            
             generationNum++;
         }
+        population = GA.assignFitness(population, phrase);
         updateAVGFitness();
         updateBestPhrase();
         update();
+        avgFitness = GA.getFitness(new Phrase(phrase,0), phrase);
+        printStats();
+        System.out.println("Phrase found. Program ended.");
     }//GEN-LAST:event_buttonRunActionPerformed
 
     private void textGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textGenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textGenActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
