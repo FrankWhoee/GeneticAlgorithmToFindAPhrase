@@ -21,7 +21,15 @@ Uses a kind of a genetic algorithm to find a phrase that you want. My first Mach
 5. A UI should pop up. Modify the settings if you want, then click "Run".
 
 **For Developers**
-1. Just download the entire thing. Using Netbeans to edit this stuff is pretty cool.
-  
+1. Click "Clone or Download"
+2. Select "Download ZIP"
+3. Extract files to a destination of choice
+4. I recommend using Netbeans to edit this. If you are using Netbeans:
+5. Launch Netbeans
+6. Click the icon ![Open Project Icon](NetBeansOpenProjectIcon.png)
+7. Then select the folder "GeneticAlgo" from the directory you extracted the ZIP file to.
+8. The icon should have a little coffee icon that signifies it's a NetBeans project.
+9. Have fun editing :smile:
+  
 
 You might have to look at the stats and stuff with the console, because awt doesn't want to update the statistics for some reason. No solution just yet. Anyways, this is my first genetic algorithm so I hope you enjoy it :D
