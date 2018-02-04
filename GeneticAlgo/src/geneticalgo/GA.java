@@ -4,8 +4,8 @@ import java.util.*;
 public class GA {
     public static ArrayList<String> letters = new ArrayList<>();
     
-    public static void importLetters(boolean capsNum){
-        
+    public static void importLetters(boolean caps, boolean nums, boolean punct){
+        letters.clear();
         letters.add("a");
         letters.add("b");
         letters.add("c");
@@ -33,7 +33,7 @@ public class GA {
         letters.add("y");
         letters.add("z");
         letters.add(" ");
-        if(capsNum){
+        if(caps){
             letters.add("A");
             letters.add("B");
             letters.add("C");
@@ -60,6 +60,9 @@ public class GA {
             letters.add("X");
             letters.add("Y");
             letters.add("Z");
+        }
+        
+        if(nums){
             letters.add("1");
             letters.add("2");
             letters.add("3");
@@ -70,6 +73,30 @@ public class GA {
             letters.add("8");
             letters.add("9");
             letters.add("0"); 
+        }
+        if(punct){
+            letters.add(",");
+            letters.add(".");
+            letters.add("/");
+            letters.add("?");
+            letters.add("!");
+            letters.add("@");
+            letters.add("#");
+            letters.add("$");
+            letters.add("%");
+            letters.add("^");
+            letters.add("&");
+            letters.add("*");
+            letters.add("(");
+            letters.add(")");
+            letters.add("-");
+            letters.add("_");
+            letters.add("=");
+            letters.add("+");
+            letters.add("`");
+            letters.add("~");
+            letters.add(">");
+            letters.add("<");
         }
         System.out.println("Letters imported.");
     }

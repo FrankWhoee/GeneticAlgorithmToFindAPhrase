@@ -1,6 +1,7 @@
 
 package geneticalgo;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import java.awt.Event;
@@ -12,6 +13,7 @@ public class PhraseUI extends javax.swing.JFrame {
     double avgFitness = 0;
     ArrayList<String> loadingSpinner = new ArrayList<>();
     int loadingNum = 0;
+    double score = 1;
     
     public PhraseUI() {
         initComponents();
@@ -125,11 +127,15 @@ public class PhraseUI extends javax.swing.JFrame {
         textGen = new java.awt.TextField();
         textPop = new java.awt.TextField();
         textFitness = new java.awt.TextField();
-        enableCapsNum = new javax.swing.JCheckBox();
+        enableCaps = new javax.swing.JCheckBox();
         jLabel7 = new javax.swing.JLabel();
         choiceLoaders = new java.awt.Choice();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        enableNum = new javax.swing.JCheckBox();
+        enablePunct = new javax.swing.JCheckBox();
+        labelPerformance = new javax.swing.JLabel();
+        buttonBenchmark = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addKeyListener(new java.awt.event.KeyAdapter() {
@@ -178,7 +184,12 @@ public class PhraseUI extends javax.swing.JFrame {
 
         textFitness.setEditable(false);
 
-        enableCapsNum.setText("Capital Letters and Numbers (Slower)");
+        enableCaps.setText("Capital Letters (Affects Performance Negatively)");
+        enableCaps.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enableCapsActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Loading Spinner (For Console Users Only):");
 
@@ -187,6 +198,30 @@ public class PhraseUI extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel10.setText("Enter settings here:");
+
+        enableNum.setText("Numbers (Affects Performance Negatively)");
+        enableNum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enableNumActionPerformed(evt);
+            }
+        });
+
+        enablePunct.setText("Punctuation (Affects Performance Negatively)");
+        enablePunct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enablePunctActionPerformed(evt);
+            }
+        });
+
+        labelPerformance.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        labelPerformance.setText("Projected Performance:");
+
+        buttonBenchmark.setText("Benchmark");
+        buttonBenchmark.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBenchmarkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,7 +245,12 @@ public class PhraseUI extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(textStartPop, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(enableCapsNum, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(labelPerformance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(enableNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(enableCaps, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(enablePunct, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(buttonBenchmark, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -237,8 +277,10 @@ public class PhraseUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(listPop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(listPop, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
@@ -256,15 +298,23 @@ public class PhraseUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(textStartPop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(enableCapsNum))))
+                                    .addComponent(enableCaps))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(enableNum)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(enablePunct)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelPerformance, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonBenchmark, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(buttonRun, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(choiceLoaders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(35, 35, 35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
@@ -285,7 +335,7 @@ public class PhraseUI extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(1, 1, 1)
                         .addComponent(textFitness, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -331,21 +381,88 @@ public class PhraseUI extends javax.swing.JFrame {
         loadingNum++;
     }
     
+    public void getCPUBenchmark(){
+        double startTime = System.currentTimeMillis();
+        int size = 5000;
+        String phrase = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+        GA.importLetters(true,true,true);
+        population = GA.generateFirstPopulation(phrase,size);
+        population = GA.assignFitness(population, phrase);
+        population = GA.generatePopulation(population, 0.01);
+        double endTime = System.currentTimeMillis();
+        System.out.println((endTime - startTime) + "ms to generate a population of 1000");
+        score = (endTime - startTime)/1000;
+        
+        updatePerformanceProjection();
+    }
+    
+    public void updatePerformanceProjection(){
+        boolean caps = enableCaps.isSelected();
+        boolean num = enableNum.isSelected();
+        boolean punct = enablePunct.isSelected();
+        
+        double performance = 0.1 * score;
+        if(caps){
+            performance += 2 * score;
+        }
+        if(num){
+            performance += score;
+        }
+        if(punct){
+            performance+= 1.5 * score;
+        }
+        
+        if(performance >= 3){
+            labelPerformance.setForeground(Color.getHSBColor(0, 1, (float)0.7));
+            labelPerformance.setText("Projected Performance: Impossible");
+        }else if(performance >= 2){
+            labelPerformance.setForeground(Color.getHSBColor((float)0.1, 1, (float)0.9));
+            labelPerformance.setText("Projected Performance: Bad");
+        }else if(performance >=1){
+            labelPerformance.setForeground(Color.YELLOW);
+            labelPerformance.setText("Projected Performance: Decent");
+        }else{
+            labelPerformance.setForeground(Color.getHSBColor((float)0.33, 1, (float)0.8));
+            labelPerformance.setText("Projected Performance: Good");
+        }
+        
+        
+    }
     
     private void buttonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRunActionPerformed
+        //Record time to solve
         double startTimeForSolve = System.currentTimeMillis();
+        //Get which cosmetic loader the user wants in console
         String choice = choiceLoaders.getSelectedItem();
+        //Import the loader that the user wants.
         importLoader(choice);
+        //Reset all variables
         avgFitness = 0;
         bestPhrase = new Phrase("",0);
         generationNum = 0;
         population = new ArrayList<>();
-        boolean capsNum = enableCapsNum.isSelected();
-        GA.importLetters(capsNum);
+        
+        //Get which features the user wants
+        boolean caps = enableCaps.isSelected();
+        boolean num = enableNum.isSelected();
+        boolean punct = enablePunct.isSelected();
+        
+        //Import letters that the GA will need
+        GA.importLetters(caps,num,punct);
+        
+        //Get the starting population size the user wants
         int size = Integer.parseInt(textStartPop.getText());
+        
+        //Get the desired phrase
         String phrase = textPhrase.getText();
+        
+        //Get the mutation rate
         double mutationRate = Double.parseDouble(textMutateRate.getText());
+        
+        //Generate first population
         population = GA.generateFirstPopulation(phrase,size);
+        
+        //Means that the generation took too long.
         if(population == null){
             System.out.println("TIMEOUT.");
             System.out.println("REALLY?");
@@ -357,9 +474,17 @@ public class PhraseUI extends javax.swing.JFrame {
             System.out.println("FRANKWHOEE"); 
             super.dispose();
         }
+        
+        //Update lists and statistics
+        updateAVGFitness();
+        updateBestPhrase();
         update();
+        
+        //Reset variables
         boolean timeout = false;
         double duration = 0;
+        
+        //Start solving.
         while(!bestPhrase.getPhrase().equals(phrase)){
             double startTime = System.currentTimeMillis();
             step();
@@ -417,6 +542,22 @@ public class PhraseUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formKeyPressed
 
+    private void enablePunctActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enablePunctActionPerformed
+       updatePerformanceProjection();
+    }//GEN-LAST:event_enablePunctActionPerformed
+
+    private void enableNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enableNumActionPerformed
+       updatePerformanceProjection();
+    }//GEN-LAST:event_enableNumActionPerformed
+
+    private void enableCapsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enableCapsActionPerformed
+        updatePerformanceProjection();
+    }//GEN-LAST:event_enableCapsActionPerformed
+
+    private void buttonBenchmarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBenchmarkActionPerformed
+        getCPUBenchmark();
+    }//GEN-LAST:event_buttonBenchmarkActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -453,9 +594,12 @@ public class PhraseUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonBenchmark;
     private javax.swing.JButton buttonRun;
     private java.awt.Choice choiceLoaders;
-    private javax.swing.JCheckBox enableCapsNum;
+    private javax.swing.JCheckBox enableCaps;
+    private javax.swing.JCheckBox enableNum;
+    private javax.swing.JCheckBox enablePunct;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -466,6 +610,7 @@ public class PhraseUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel labelPerformance;
     private java.awt.List listPop;
     private java.awt.TextField textBestPhrase;
     private java.awt.TextField textFitness;

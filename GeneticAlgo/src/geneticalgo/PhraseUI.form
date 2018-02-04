@@ -45,7 +45,13 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="textStartPop" min="-2" pref="164" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="enableCapsNum" min="-2" pref="303" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="labelPerformance" max="32767" attributes="0"/>
+                                  <Component id="enableNum" max="32767" attributes="0"/>
+                                  <Component id="enableCaps" max="32767" attributes="0"/>
+                                  <Component id="enablePunct" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="buttonBenchmark" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -83,8 +89,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="listPop" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="listPop" min="-2" pref="543" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel10" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
@@ -103,11 +112,19 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="textStartPop" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="enableCapsNum" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="enableCaps" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="enableNum" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="enablePunct" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelPerformance" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="buttonBenchmark" min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace pref="87" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="buttonRun" min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
@@ -116,7 +133,7 @@
                               <Component id="choiceLoaders" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" pref="38" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -143,7 +160,7 @@
                       <Component id="textFitness" min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -232,10 +249,13 @@
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="enableCapsNum">
+    <Component class="javax.swing.JCheckBox" name="enableCaps">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Capital Letters and Numbers (Slower)"/>
+        <Property name="text" type="java.lang.String" value="Capital Letters (Affects Performance Negatively)"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enableCapsActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
@@ -259,6 +279,38 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Enter settings here:"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="enableNum">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Numbers (Affects Performance Negatively)"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enableNumActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="enablePunct">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Punctuation (Affects Performance Negatively)"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enablePunctActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelPerformance">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Ubuntu" size="24" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Projected Performance:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonBenchmark">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Benchmark"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBenchmarkActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
