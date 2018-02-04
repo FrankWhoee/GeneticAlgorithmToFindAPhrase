@@ -243,10 +243,6 @@ public class PhraseUI extends javax.swing.JFrame {
         double progress = getProgress();
         String progressBar = getProgressBar(progress);
         System.out.println("PROGRESS: [" + (int)progress + "% " + progressBar + "]");
-        
-        
-        
-        
     }
     
     
@@ -268,10 +264,18 @@ public class PhraseUI extends javax.swing.JFrame {
             updateBestPhrase();
             update();
             double endTime = System.currentTimeMillis();
-            if((endTime -startTime) > 1000){
+            if((endTime -startTime) > 5000){
+                System.out.println("TIMEOUT. TIME TAKEN:" + (endTime -startTime));
+                if(size > 1000){
+                    System.out.println("STOP DICKING AROUND WITH THE POPULATION SIZE. ANYTHING GREATER THAN 1000 IS OVERKILL, AND YOUR COMPUTER CAN'T HANDLE IT.");
+                }else{
+                    System.out.println("GET A BETTER COMPUTER PLEASE.");
+                    System.out.println("SERIOUSLY IF IT TAKES YOU MORE THAN 5 SECONDS TO CALCULATE " + size + " PHRASES, YOUR COMPUTER IS SCREWED.");
+                    System.out.println("EVEN MY COMPUTER IS BETTER THAN THAT AND IT'S FROM 2006 OR SOMETHING LIKE THAT.");
+                    System.out.println("SINCERELY, FRANKWHOEE");
+                }
                 break;
             }
-            
             generationNum++;
         }
         population = GA.assignFitness(population, phrase);
@@ -280,7 +284,7 @@ public class PhraseUI extends javax.swing.JFrame {
         update();
         avgFitness = GA.getFitness(new Phrase(phrase,0), phrase);
         printStats();
-        System.out.println("Phrase found. Program ended.");
+        System.out.println("Program ended.");
     }//GEN-LAST:event_buttonRunActionPerformed
 
     private void textGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textGenActionPerformed
