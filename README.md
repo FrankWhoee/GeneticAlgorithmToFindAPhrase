@@ -15,7 +15,7 @@ Uses a kind of a genetic algorithm to find a phrase that you want. My first Mach
 
 **For Windows Users**
 1. Open up the Terminal by right-clicking on the Start Button, then clicking "Run".
-2. Type `cmd`
+2. Type "cmd"
 3. Navigate to the folder that contains GeneticAlgo.jar using `cd`
 4. Type `java -jar GeneticAlgo.jar`
 5. A UI should pop up. Modify the settings if you want, then click "Run".
