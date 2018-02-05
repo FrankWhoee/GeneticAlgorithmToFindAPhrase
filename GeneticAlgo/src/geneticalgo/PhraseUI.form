@@ -45,13 +45,16 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="textStartPop" min="-2" pref="164" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="labelPerformance" max="32767" attributes="0"/>
-                                  <Component id="enableNum" max="32767" attributes="0"/>
-                                  <Component id="enableCaps" max="32767" attributes="0"/>
-                                  <Component id="enableSymbols" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="buttonBenchmark" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
-                                  <Component id="enableLowercase" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="buttonBenchmark" min="-2" pref="140" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="labelPerformance" max="32767" attributes="0"/>
+                                      <Component id="enableNum" max="32767" attributes="0"/>
+                                      <Component id="enableCaps" max="32767" attributes="0"/>
+                                      <Component id="enableSymbols" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="enableLowercase" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="labelETA" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -123,8 +126,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="labelPerformance" min="-2" pref="40" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelETA" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="buttonBenchmark" min="-2" pref="45" max="-2" attributes="0"/>
-                      <EmptySpace pref="64" max="32767" attributes="0"/>
+                      <EmptySpace pref="41" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="buttonRun" min="-2" pref="50" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
@@ -321,6 +326,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enableLowercaseActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelETA">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ETA: "/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
